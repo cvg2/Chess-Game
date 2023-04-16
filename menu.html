@@ -9,7 +9,15 @@
       <button id = "singleplayer" onclick="singleFunc()">Single Player</button>
       <button id = "multiplayer" onclick= "multiFunc()">Multi Player</button>
     </div>
-   
-
+    <script>
+    function singleFunc(){
+      window.localStorage.setItem("multi",0);
+      document.location='index.html';
+    }
+    function multiFunc(){
+      window.localStorage.setItem("multi",1);
+      document.location='index.html';
+    }
+    </script>
 </body>
 <html>
