@@ -1,0 +1,47 @@
+#tittle{
+  margin: auto;
+  color: white;
+  margin:20px;
+  font-size: 150px;
+  font-weight: bold;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-image: linear-gradient(to right, white, yellow);
+  -webkit-background-clip: text;
+  color: transparent;
+
+}
+
+body {
+  background-image: url('../images/backgroundpic.jpeg');
+  background-size: cover;
+
+}
+#multiplayer {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  border: 5px solid blue;
+  border-radius: 10px;
+  background-color: blue;
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+  font-family: arial;
+  width: 10em;
+  margin: 200px auto;
+}
+#singleplayer {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  border: 5px solid blue;
+  border-radius: 10px;
+  background-color: blue;
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+  font-family: arial;
+  width: 10em;
+  margin: 200px auto;
+}
+
