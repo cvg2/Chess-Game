@@ -1,14 +1,55 @@
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="css/menu.css">
-    <title>CHESS</title>
+    <title>Chess</title>
+    <style>
+      body {
+        background: #202028;
+        color: #fff;
+        font-family: sans-serif;
+        font-size: 2em;
+        text-align: center;
+        background-image: url('images/background.jpeg');
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+      canvas {
+        border: solid .2em #fff;
+        height: 90vh;
+      }
+      #main{
+        display: none;
+      }
+      #singleBtn, #multiBtn{
+        text-align: center;
+        vertical-align: middle;
+        border: 5px solid goldenrod;
+        border-radius: 10px;
+        background-color: gold;
+        color: white;
+        font-size: 32px;
+        font-weight: bold;
+        font-family: "Courier New";
+        width: 10em;
+        margin: 20px auto;
+
+      }
+      #theHead{
+        margin: auto;
+        color: orange;
+        font-size: 5em;
+        font-family: "Courier New";
+      }
+    </style>
 </head>
 <body>
-    <div id="tittle">CHESS</div>
-    <div style="position: fixed; bottom: 0; width: 100%; text-align: center;">
-      <button id = "singleplayer" onclick="singleFunc()">Single Player</button>
-      <button id = "multiplayer" onclick= "multiFunc()">Multi Player</button>
+    <div id="theHead">CHESS</div>
+
+    <div id="singleBtn" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'" onclick="singleFunc()">Singleplayer</div>
+    <div id="multiBtn" onmouseover="this.style.backgroundColor = 'goldenrod'" onmouseout="this.style.backgroundColor = 'gold'" onclick= "multiFunc()">Multiplayer</div>
+
+    <div id="main">
     </div>
+
     <script>
     function singleFunc(){
       window.localStorage.setItem("multi",0);
@@ -19,5 +60,6 @@
       document.location='index.html';
     }
     </script>
+
 </body>
 <html>
