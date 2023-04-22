@@ -1,0 +1,24 @@
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="css/menu.css">
+    <title>CHESS</title>
+</head>
+<body>
+    <div id="tittle">CHESS</div>
+    <div style="position: fixed; bottom: 0; width: 100%; text-align: center;">
+      <button id = "singleplayer" onclick="singleFunc()">Single Player</button>
+      <button id = "multiplayer" onclick= "multiFunc()">Multi Player</button>
+    </div>
+    <script>
+    function singleFunc(){
+      window.localStorage.setItem("multi",0);
+      document.location='index.html';
+    }
+    function multiFunc(){
+      window.localStorage.setItem("multi",1);
+      document.location='index.html';
+    }
+    </script>
+
+</body>
+<html>
