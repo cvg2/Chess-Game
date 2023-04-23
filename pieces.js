@@ -1,133 +1,58 @@
-class Piece{
-  constructor(pieceStr,color,x,y){
+class Piece {
+    constructor(pieceStr,color,x,y){
     this.pieceStr = pieceStr;
     this.color = color;
     this.x = x;
     this.y = y;
     this.possMoves = [];
-  }
+}
 
-  leadsToCheck(boardArr,curMovePiece,toX,toY){
-    //for every opponent piece check if the move can lead to check
+//The function checks if the currentPiece lead a check or not
+leadsToCheck(board,toX,toY){
+//for every opponent piece check if the move can lead to check
+    let copy = _.cloneDeep(board);
+    let boardArr = copy.boardArr;
+    copy.movePiece(boardArr[this.x][this.y],toX,toY)
 
-    curPieceColor = curMovePiece.color
-    tempBoard  = new Board()
-    tempBoard.boardArr = boardArr.boardArr
-    tempBoard.movePiece(piece,toX,toY)
+    let enemyKy, enemyKx,currentPiece, currentKingy, currentKingX;
+
+
+    if (this.color == "White"){
+      enemyKx = board.bKingX;
+      enemyKy = board.bKingY;
+      currentKingX = board.wKingX;
+      currentKingy = board.wKingY;
+    }else if (this.color == "Black") {
+      enemyKx = board.wKingX;
+      enemyKy = board.wKingY;
+      currentKingX = board.bKingX;
+      currentKingy = board.bKingY;
+    }
+
+    if(this.pieceStr == "King"){
+      currentKingy = toY;
+      currentKingX = toX;
+    }
+
 
     for(let i = 0; i < 8;i += 1){
       for(let j = 0; j < 8; j += 1){
-        if (boardArr[i][j].color != curPieceColor){
-          //check if it leads to check
-
+        if (copy.boardArr[i][j].color != this.color && copy.boardArr[i][j].color != 'blank'){
+          currentPiece = copy.boardArr[i][j];
+          currentPiece.possibleMoves(copy,false);
+          for(let k = 0; k < currentPiece.possMoves.length; k++)
+            if (currentPiece.possMoves[k][0] == currentKingX && currentPiece.possMoves[k][1] == currentKingy) return true;
         }
       }
     }// end of nested loop
-    return False
-  }
-
-  isValidMove(toX,toY){
-
-  }
-
+    return false;
+    }
 }
 
-class Pawn extends Piece{
-  constructor(color,x,y){
-    super('Pawn',color,x,y);
-  }
-  possibleMoves(boardArr){
-    this.possMoves = [];//clear curr possibleMoves
-
-    let colorMod = this.color == 'White' ? 1:-1;
-
-    if (this.y == 1 && this.color == 'White' && boardArr[this.x][this.y + 1] == null && boardArr[this.x][this.y + 2] == null){//can move two
-      this.possMoves.push([piece.x,piece.y + 2]);
+// The square that does not have a piece is transparent
+class Transparent extends Piece{
+    constructor(color,x,y){
+    super('Transparent',color,x,y);
     }
-    if (this.y == 6 && this.color == 'Black' && boardArr[this.x][this.y - 1] == null && boardArr[this.x][this.y - 2] == null){//can move two
-      this.possMoves.push([this.x,this.y - 2]);
-    }
-
-    if (boardArr[this.x + 1][this.y + 1*colorMod].color != this.color && this.x + 1 < 8 && this.y + 1*colorMod < 8 && this.y + 1*colorMod >= 0){//can attack right diag
-      this.possMoves.push([this.x + 1,this.y + 1*colorMod]);
-    }
-
-    if (boardArr[this.x - 1][this.y + 1*colorMod].color != this.color && this.x - 1 >= 0 && this.y + 1*colorMod < 8 && this.y + 1*colorMod >= 0){//can attack left diag
-      this.possMoves.push([this.x - 1,this.y + 1*colorMod]);
-    }
-  }//poss moves
-
-  //need to add upgrade if it reaches last row
-
-}
-
-class Knight extends Piece{
-  constructor(color,x,y){
-    super('Knight',color,x,y);
-  }
-
-  possibleMoves(boardArr){
-    this.possMoves = [];
-    x = this.x;
-    y = this.y;
-    //8 possible moves
-    if ((Math.abs(xMod) !== Math.abs(yMod)) && (x + (2 * xMod) >= 0) && (x + (2 * xMod) < 8) && (y + yMod >= 0) && (y + yMod < 8)) {
-      if (boardArr[x + (2 * xMod)][y + yMod] === null || boardArr[x + (2 * xMod)][y + yMod].color !== this.color) {
-        this.possMoves.push([x + (2 * xMod), y + yMod]);
-      }
-    }
-    }
-  }
-
-class Queen extends Piece{
-  constructor(color,x,y){
-    super('Queen',color,x,y);
-  }
-
-  possibleMoves(boardArr){}
-}
-
-
-class King extends Piece{
-  constructor(color,x,y){
-    super('King',color,x,y);
-  }
-
-  possibleMoves(boardArr){}
-
-  checkMated(curPlayerColor,boardArr){//1 if mated
-    let checkMated = 0
-    for(let i = 0; i < 8;i += 1){
-      for(let j = 0; j < 8; j += 1){
-        curPiece = boardArr[i][j]
-        if (curPiece.color == curPlayerColor){
-          //check if it leads to check
-          curPiece.possibleMoves()
-          if (curPiece.possMoves.length != 0){return 0}//at least one valid move
-        }
-      }
-    }
-
-    return 1
-  }
-
-  inCheck(boardArr){
-
-  }
-}
-
-class Rook extends Piece{
-  constructor(color,x,y){
-    super('Rook',color,x,y);
-  }
-
-  possibleMoves(boardArr){}
-}
-
-class Bishop extends Piece{
-  constructor(color,x,y){
-    super('Bishop',color,x,y);
-  }
-
-  possibleMoves(boardArr){}
+    possibleMoves(board){}
 }
