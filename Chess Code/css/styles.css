@@ -1,0 +1,170 @@
+body{
+background-color: white;
+background-image: url('../images/fondo.jfif');
+background-size: cover;
+background-repeat: no-repeat;
+}
+.parent-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+h1 {
+text-align: center;
+font-size: 60px;
+font-family: sans-serif;
+text-shadow: 1px 1px white;
+}
+
+.square {
+  background-color: #A1D5F4;
+  width: 50px;
+  height: 50px;
+  text-align:right;
+  position: relative;
+}
+
+.upgradeContainer{
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  grid-template-columns: repeat(8, 1fr);
+  height: 250px;
+  width: 600px;
+  overflow: hidden;
+  margin: auto;
+}
+
+.main-container {
+  display: flex;
+  border-radius: 5px;
+  grid-template-columns: repeat(8, 1fr);
+  height: 400px;
+  width: 400px;
+  overflow: hidden;
+}
+
+.files:nth-of-type(odd) .square:nth-of-type(even) {
+  background-color: #4776bc;
+}
+.files:nth-of-type(even) .square:nth-of-type(odd) {
+  background-color: #4776bc;
+}
+
+img {
+  width: 100%;
+}
+
+.circle {
+  width: 30%;
+  height: 30%;
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 50%;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.square-common {
+  width: 70px;
+  height: 70px;
+}
+
+.color-dark{
+  background-color: yellow;
+}
+
+.color-light{
+  background-color: yellow;
+}
+
+.rank-style{
+  width: 560px;
+  height: 70px;
+  display: flex;
+}
+
+#turnColor{
+text-align: center;
+vertical-align: middle;
+background-color: white;
+border: 2px solid black;
+border-radius: 10px;
+font-size: 20px;
+font-weight: bold;
+font-family: "Courier New";
+width: 48px;
+height: 37px;
+margin: 10px 10px;
+}
+
+#turnText {
+margin-left: 20px;
+}
+
+#turn{
+display: flex;
+align-items: center;
+text-align: center;
+vertical-align: bottom;
+border: 2px solid black;
+border-radius: 10px;
+background-color: lightblue;
+color: black;
+font-size: 20px;
+font-weight: bold;
+font-family: "Courier New";
+width: 23em;
+height: 80px;
+margin: auto;
+
+}
+
+#backBtn, #restartGame {
+  vertical-align: middle;
+  display: inline-block;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px;
+  background-color: goldenrod;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  font-family: "Arial";
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out;
+  margin: 40px auto;
+}
+#backBtn{
+  margin-left: 650px;
+}
+
+#backBtn:hover, #restartGame:hover {
+  background-color: darkgoldenrod;
+}
+
+
+
+
+#qBtn,#rBtn,#kBtn,#bBtn{
+text-align: center;
+vertical-align: middle;
+border: 5px solid goldenrod;
+border-radius: 10px;
+background-color: lightgrey;
+color: black;
+font-size: 22px;
+font-weight: bold;
+font-family: "Courier New";
+width: 5em;
+margin: auto;
+
+}
