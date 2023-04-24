@@ -4,7 +4,7 @@ class King extends Piece{
     this.canCastleLeft = true;
     this.canCastleRight = true;
 }
-// This is a class we created for possible moves for the King on the board.
+
 possibleMoves(board,leadsToCheck){
 
     let boardArr = board.boardArr;
@@ -27,7 +27,7 @@ possibleMoves(board,leadsToCheck){
     if(this.y + 1 < 8 && boardArr[this.x][this.y + 1].color != this.color)//Up
       possMoves.push([this.x,this.y + 1]);
 
-// This is checking whether the current chess piece can perform a castling move.
+
     if(this.canCastleLeft){
       if(boardArr[1][this.y].color == 'blank' && boardArr[2][this.y].color == 'blank' && boardArr[3][this.y].color == 'blank' && this.validCastle(board,'L'))
         possMoves.push([2,this.y])
@@ -47,10 +47,11 @@ possibleMoves(board,leadsToCheck){
     this.possMoves = possMoves;
 
     }
-// This will check if castling is a valid move on the board.
+
     validCastle(board,dir){
         if(this.inCheck(board)) return false;
-        let copy = _.cloneDeep(board);
+        let copy = new Board();
+        copy = board.cloneDeep();
         let boardArr = copy.boardArr;
         if (dir == 'L'){
           copy.movePiece(boardArr[0][this.y],3,this.y)
@@ -63,7 +64,7 @@ possibleMoves(board,leadsToCheck){
           else return true;
         }
     }
-// Method to check if the player in current turn is checkmated or not.
+
     checkMated(board){//1 if mated
     let boardArr = board.boardArr;
     let currentPiece;
@@ -92,7 +93,7 @@ possibleMoves(board,leadsToCheck){
       currentKingX = board.bKingX;
       currentKingY = board.bKingY;
     }
-// Method that checks if the current players King is in check.
+
     for(let i = 0; i < 8;i += 1){
       for(let j = 0; j < 8; j += 1){
         if (board.boardArr[i][j].color != this.color && board.boardArr[i][j].color != 'blank'){
