@@ -50,7 +50,7 @@ possibleMoves(board,leadsToCheck){
 // This will check if castling is a valid move on the board.
     validCastle(board,dir){
         if(this.inCheck(board)) return false;
-        let copy = _.copyDeep(board);
+        let copy = _.cloneDeep(board);
         let boardArr = copy.boardArr;
         if (dir == 'L'){
           copy.movePiece(boardArr[0][this.y],3,this.y)
