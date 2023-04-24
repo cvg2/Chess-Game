@@ -9,8 +9,8 @@ class Piece {
 
 //The function checks if the currentPiece lead a check or not
 leadsToCheck(board,toX,toY){
-//for every opponent piece check if the move can lead to check
-    let copy = _.cloneDeep(board);
+    let copy = new Board();
+    copy = board.cloneDeep();
     let boardArr = copy.boardArr;
     copy.movePiece(boardArr[this.x][this.y],toX,toY)
 
@@ -56,3 +56,4 @@ class Transparent extends Piece{
     }
     possibleMoves(board){}
 }
+
