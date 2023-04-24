@@ -1,14 +1,94 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<title>Chess</title>
-	<meta charset="UTF-8">
-</head>
-<body>
-	<script src="representation.js"></script>
-  <script src="board.js"></script>
-  <script src="pieces.js"></script>
-  <script src="lodash.js"></script>
-  <script src='wukong.js'></script>
-</body>
+<html lang="en">
+  <head>
+    <h1>CHESS GAME</h1>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CHESS GAME</title>
+    <div class="turn" id = "turn">
+      <div id="turnText">
+        White
+      </div>
+      <div id="turnColor"></div>
+      <label id = "Levels" for="quantity">Level</label>
+      <div class="number-input">
+        <button onclick="decrease()" id="minus-btn" type="button">-</button>
+        <input type="number" id="quantity" name="quantity" value="1" min="1" max="3">
+        <button onclick="increase()" id="plus-btn" type="button">+</button>
+      </div>
+    </div>
+    <link rel="stylesheet" href="css/styles.css" />
+      </head>
+  <body>
+    <script src="representation.js"></script>
+    <div id="backBtn" onclick="document.location='menu.html'"> Back</div>
+    <div id="restartGame" onclick="document.location.reload()"> Restart</div>
+    <div class="upgradeContainer" id = "upgrade">
+      <div id="qBtn" onclick="promotionClick(this.id)"> <img id = "qBtnI" src="images/white/queen.png" alt=""/> Queen</div>
+      <div id="kBtn" onclick="promotionClick(this.id)"><img id = "kBtnI" src="images/white/knight.png" alt=""/>Knight</div>
+      <div id="rBtn" onclick="promotionClick(this.id)"><img id = "rBtnI" src="images/white/rook.png" alt=""/>Rook</div>
+      <div id="bBtn" onclick="promotionClick(this.id)"><img id = "bBtnI" src="images/white/bishop.png" alt=""/>Bishop</div>
+    </div>
+    <script src='Piece.js'></script>
+    <script src='./Pieces/Rook.js'></script>
+    <script src='./Pieces/Knight.js'></script>
+    <script src='./Pieces/Bishop.js'></script>
+    <script src='./Pieces/Pawn.js'></script>
+    <script src='./Pieces/Queen.js'></script>
+    <script src='./Pieces/King.js'></script>
+
+    <script src='functions.js'></script>
+    <script src="board.js"></script>
+    <script src="lodash.js"></script>
+    <script src='wukong.js'></script>
+
+
+<script type="text/javascript">
+
+
+//////////////////////////////////////// BEGINNING OF THE GAME
+
+
+
+  board = new Board();
+  board.init();
+
+
+
+  var engine = new Engine();
+  engine.printMoveList(engine.getMoves());
+  console.log(engine.generateFen());
+  engine.setBoard('rnbqkbnr/pppppppp/8/8/3P4/8/PPP1PPPP/RNBQKBNR w KQkq - 0 2');
+  engine.printBoard();
+
+
+  let searchDepth = 1;
+  document.getElementById('upgrade').style.visibility = "hidden";
+
+  engine.setBoard(board.toFen());
+
+  let multiplayer = parseInt(window.localStorage.getItem("multi"));
+
+  if(multiplayer == 1) {
+      document.getElementById("Levels").style.display = "none";
+      document.getElementById("quantity").style.display = "none";
+      document.getElementById("minus-btn").style.display = "none";
+      document.getElementById("plus-btn").style.display = "none";
+      document.getElementById("turn").style = "display: flex;align-items:center;text-align: center;vertical-align: bottom;border: 2px solid black;border-radius: 10px;background-color: #eee;color: black;font-size: 20px;font-weight: bold;font-family: Courier New;width: 20em;height: 80px;margin: auto";
+      document.getElementById("turnText").style.paddingLeft = "5px"
+      document.getElementById('turn').style.width = '10em';
+      document.getElementById("turnColor").style.width = "40px";
+      document.getElementById("turnColor").style.height = "37px";
+      document.getElementById("turnColor").style.margin = "10px 10px"
+  }
+  else {
+    document.getElementById("turnText").style.display = "none";
+    document.getElementById("turnColor").style.display = "none";
+    document.getElementById('turn').style.width = '10em';
+  }
+
+  </script>
+
+  </body>
 </html>
