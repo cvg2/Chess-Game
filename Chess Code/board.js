@@ -3,6 +3,16 @@ class Board {
     this.validPieces = ['Pawn','Rook','Knight','Bishop','King','Queen','Transparent'];
     this.boardArr = Array.from(Array(8), () => new Array(8));//2D 8x8 array for board pieces
   }
+  cloneDeep() {
+    const clone = new Board();
+    clone.validPieces = [...this.validPieces];
+    clone.boardArr = this.boardArr.map(row => row.map(piece => {
+      const { constructor: PieceClass } = piece;
+      return new PieceClass(piece.color, piece.x, piece.y);
+    }));
+    return clone;
+  }
+
   init(){//board initialization
       this.turn = 'w';
       this.halfMove = 0;
@@ -176,3 +186,4 @@ class Board {
   }
 
 }
+
